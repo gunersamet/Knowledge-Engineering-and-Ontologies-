@@ -1,0 +1,21 @@
+PREFIX schema: <http://schema.org/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+SELECT ?movieName ?year ?genre ?directorName (GROUP_CONCAT(?actorName; separator=", ") AS ?actors)
+WHERE {
+  ?movie rdf:type schema:Movie ;
+         schema:name ?movieName ;
+         schema:datePublished ?year ;
+         schema:genre ?genre ;
+         schema:director ?director ;
+         schema:actor ?actor .
+
+  # İsimleri FOAF üzerinden çekiyoruz
+  ?director foaf:name ?directorName .
+  ?actor foaf:name ?actorName .
+
+  FILTER(?movieName = "Oppenheimer")
+}
+GROUP BY ?movieName ?year ?genre ?directorName

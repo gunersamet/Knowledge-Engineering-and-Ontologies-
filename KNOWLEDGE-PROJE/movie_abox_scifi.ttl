@@ -1,0 +1,19 @@
+@prefix schema: <http://schema.org/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix inst: <https://www.example.org/movie/instances#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+inst:Dune rdf:type schema:Movie ;
+    schema:name "Dune: Part One" ;
+    schema:genre "Sci-Fi" ;
+    schema:director inst:DenisVilleneuve ;
+    schema:actor inst:TimotheeChalamet, inst:Zendaya .
+
+inst:DenisVilleneuve rdf:type foaf:Person ;
+    foaf:name "Denis Villeneuve" .
+
+inst:TimotheeChalamet rdf:type foaf:Person ;
+    foaf:name "Timothée Chalamet" .
+
+inst:Zendaya rdf:type foaf:Person ;
+    foaf:name "Zendaya" .

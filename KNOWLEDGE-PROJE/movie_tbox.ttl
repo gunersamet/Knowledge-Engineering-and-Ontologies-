@@ -1,0 +1,21 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <http://schema.org/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix time: <http://www.w3.org/2002/07/owl-time#> .
+
+<https://www.example.org/movie-ontology> rdf:type owl:Ontology ;
+    rdfs:label "Gelişmiş Film Bilgi Grafiği Şeması" .
+
+# Kişiler için FOAF
+foaf:Person rdf:type owl:Class .
+
+# Filmler ve Karakter Roller için Schema.org
+schema:Movie rdf:type owl:Class .
+schema:PerformanceRole rdf:type owl:Class .
+
+# Film süresi için W3C Time Ontology
+time:hasDurationDescription rdf:type owl:ObjectProperty ;
+    rdfs:domain schema:Movie ;
+    rdfs:range time:DurationDescription .

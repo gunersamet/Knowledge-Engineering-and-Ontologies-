@@ -1,0 +1,34 @@
+@prefix schema: <http://schema.org/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix time: <http://www.w3.org/2002/07/owl-time#> .
+@prefix qudt: <https://qudt.org/schema/qudt/> .
+@prefix inst: <https://www.example.org/movie/instances#> .
+@prefix unit: <https://qudt.org/schema/qudt/unit/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+# --- Kişiler ---
+inst:ChristopherNolan rdf:type foaf:Person ;
+    foaf:name "Christopher Nolan" .
+
+inst:CillianMurphy rdf:type foaf:Person ;
+    foaf:name "Cillian Murphy" ;
+    foaf:knows inst:ChristopherNolan .
+
+# --- Filmler ---
+inst:Oppenheimer rdf:type schema:Movie ;
+    schema:name "Oppenheimer" ;
+    schema:datePublished "2023" ;
+    schema:genre "Biography", "Drama", "History" ;
+    schema:director inst:ChristopherNolan ;
+    schema:actor inst:CillianMurphy ;
+    
+    time:hasDurationDescription [
+        rdf:type time:DurationDescription ;
+        time:minutes 180 
+    ] ;
+
+    schema:budget [
+        rdf:type qudt:QuantityValue ;
+        qudt:numericValue 100000000 ;
+        qudt:hasUnit unit:USD
+    ] .

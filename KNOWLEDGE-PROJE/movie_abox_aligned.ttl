@@ -1,0 +1,26 @@
+@prefix schema: <http://schema.org/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix inst: <https://www.example.org/movie/instances#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+# Film Tanımı
+inst:TheMatrix rdf:type schema:Movie ;
+    schema:name "The Matrix" ;
+    schema:genre "Sci-Fi", "Action" ;
+    schema:actor inst:RoleNeo, inst:RoleTrinity .
+
+# Rol/Karakter Tanımları
+inst:RoleNeo rdf:type schema:PerformanceRole ;
+    schema:characterName "Thomas A. Anderson / Neo" ;
+    schema:actor inst:KeanuReeves .
+
+inst:RoleTrinity rdf:type schema:PerformanceRole ;
+    schema:characterName "Trinity" ;
+    schema:actor inst:CarrieAnneMoss .
+
+# Kişiler (FOAF standartlarına güncellendi)
+inst:KeanuReeves rdf:type foaf:Person ;
+    foaf:name "Keanu Reeves" .
+
+inst:CarrieAnneMoss rdf:type foaf:Person ;
+    foaf:name "Carrie-Anne Moss" .
