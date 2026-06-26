@@ -1,0 +1,78 @@
+@prefix schema: <http://schema.org/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix time: <http://www.w3.org/2002/07/owl-time#> .
+@prefix qudt: <https://qudt.org/schema/qudt/> .
+@prefix inst: <https://www.example.org/movie/instances#> .
+@prefix unit: <https://qudt.org/schema/qudt/unit/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+# --- Yayın Platformları ---
+inst:Netflix rdf:type inst:StreamingPlatform ;
+    schema:name "Netflix" .
+
+inst:AmazonPrime rdf:type inst:StreamingPlatform ;
+    schema:name "Amazon Prime Video" .
+
+# --- Kişiler (Yönetmenler ve Oyuncular) ---
+inst:ChristopherNolan rdf:type foaf:Person ; foaf:name "Christopher Nolan" .
+inst:CillianMurphy rdf:type foaf:Person ; foaf:name "Cillian Murphy" ; foaf:knows inst:ChristopherNolan .
+
+inst:DenisVilleneuve rdf:type foaf:Person ; foaf:name "Denis Villeneuve" .
+inst:Zendaya rdf:type foaf:Person ; foaf:name "Zendaya" .
+inst:TimotheeChalamet rdf:type foaf:Person ; foaf:name "Timothée Chalamet" .
+
+inst:LanaWachowski rdf:type foaf:Person ; foaf:name "Lana Wachowski" .
+inst:KeanuReeves rdf:type foaf:Person ; foaf:name "Keanu Reeves" .
+inst:CarrieAnneMoss rdf:type foaf:Person ; foaf:name "Carrie-Anne Moss" .
+
+inst:DavidFincher rdf:type foaf:Person ; foaf:name "David Fincher" .
+inst:BradPitt rdf:type foaf:Person ; foaf:name "Brad Pitt" .
+inst:EdwardNorton rdf:type foaf:Person ; foaf:name "Edward Norton" .
+
+# --- Filmler ---
+
+# 1. Oppenheimer
+inst:Oppenheimer rdf:type inst:AwardWinningMovie ; 
+    schema:name "Oppenheimer" ;
+    schema:datePublished "2023" ;
+    schema:genre "Biography", "Drama", "History" ;
+    schema:director inst:ChristopherNolan ;
+    schema:actor inst:CillianMurphy ;
+    schema:keywords "atom bombası", "ikinci dünya savaşı", "nolan filmi", "fizik" ;
+    inst:availableOnPlatform inst:AmazonPrime ;
+    time:hasDurationDescription [
+        rdf:type time:DurationDescription ;
+        time:minutes 180 
+    ] ;
+    schema:budget [
+        rdf:type qudt:QuantityValue ;
+        qudt:numericValue 100000000 ;
+        qudt:hasUnit unit:USD
+    ] .
+
+# 2. Dune
+inst:Dune rdf:type inst:AwardWinningMovie ;
+    schema:name "Dune" ;
+    schema:datePublished "2021" ;
+    schema:genre "Sci-Fi", "Adventure" ;
+    schema:director inst:DenisVilleneuve ;
+    schema:actor inst:Zendaya, inst:TimotheeChalamet ; # İki oyuncu (Rol arkadaşları)
+    inst:availableOnPlatform inst:Netflix .
+
+# 3. The Matrix
+inst:TheMatrix rdf:type inst:AwardWinningMovie ;
+    schema:name "The Matrix" ;
+    schema:datePublished "1999" ;
+    schema:genre "Action", "Sci-Fi" ;
+    schema:director inst:LanaWachowski ;
+    schema:actor inst:KeanuReeves, inst:CarrieAnneMoss ; # İki oyuncu (Rol arkadaşları)
+    inst:availableOnPlatform inst:AmazonPrime .
+
+# 4. Fight Club
+inst:FightClub rdf:type inst:AwardWinningMovie ;
+    schema:name "Fight Club" ;
+    schema:datePublished "1999" ;
+    schema:genre "Drama" ;
+    schema:director inst:DavidFincher ;
+    schema:actor inst:BradPitt, inst:EdwardNorton ; # İki oyuncu (Rol arkadaşları)
+    inst:availableOnPlatform inst:Netflix .

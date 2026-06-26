@@ -1,0 +1,33 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix schema: <http://schema.org/> .
+@prefix inst: <https://www.example.org/movie/instances#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+inst:MovieShape
+    a sh:NodeShape ;
+    sh:targetClass schema:Movie ;
+    
+    # KURAL 1: Her filmin mutlaka 1 tane adı olmalı ve bu metin (string) formatında olmalıdır.
+    sh:property [
+        sh:path schema:name ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:string ;
+        sh:message "Kritik Hata: Her filmin tam olarak 1 adet adı (schema:name) olmalıdır ve metin formatında (string) yazılmalıdır." ;
+    ] ;
+    
+    # KURAL 2: Her filmin en az 1 yönetmeni olmalı ve bu bir bağlantı (IRI) olmalıdır.
+    sh:property [
+        sh:path schema:director ;
+        sh:minCount 1 ;
+        sh:nodeKind sh:IRI ;
+        sh:message "Kritik Hata: Filmin en az bir yönetmeni (schema:director) olmalı ve bu bir metin değil, kişi düğümüne (node) ait bir IRI olmalıdır." ;
+    ] ;
+
+    # KURAL 3: Her filmin en az 1 oyuncusu olmalıdır.
+    sh:property [
+        sh:path schema:actor ;
+        sh:minCount 1 ;
+        sh:message "Uyarı: Filme ait en az bir oyuncu (schema:actor) tanımlanmalıdır." ;
+    ] .
