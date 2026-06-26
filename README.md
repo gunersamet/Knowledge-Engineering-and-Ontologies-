@@ -1,2 +1,2 @@
 # Knowledge-Engineering-and-Ontologies-
-A project for a digital library infrastructure that can operate in the background of a website and make “intelligent” inferences about movies.
+A natural language-driven semantic movie assistant powered by a local LLM (Llama3) and Knowledge Graphs (RDF/SPARQL), seamlessly integrating Streamlit, RDFlib, and SHACL
